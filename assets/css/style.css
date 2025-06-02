@@ -1442,7 +1442,8 @@ width: 50%;
 }
 
 
-@media (max-width: 900px) {
+
+@media (max-width: 1024px) {
   .header__nav {
     display: none;
   }
@@ -1482,7 +1483,7 @@ width: 50%;
   }
 
   .delivery-info__grid{
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     padding: 0 16px;
   }
 
@@ -1515,7 +1516,7 @@ width: 50%;
   }
 
   .pickup-points__grid{
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .promo__left{
@@ -1572,7 +1573,7 @@ width: 50%;
   .catalog__grid {
     display: grid
 ;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
   .mobile-menu {
@@ -1593,7 +1594,7 @@ width: 50%;
   }
 
   .products__grid{
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .mobile-menu.active {
@@ -1638,3 +1639,6 @@ width: 50%;
   
 }
 
+
+
+@media (max-width: 768px) {
