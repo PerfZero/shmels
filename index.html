@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Мобильные стили */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 15px;
+        }
+        
+    
+
+        .header__main-inner {
+          padding: 10px 0;
+        }
+
+        .header__nav {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.9);
+          z-index: 100;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .header__nav.active {
+          display: flex;
+        }
+
+        .header__contacts {
+          display: none;
+        }
+
+        .burger {
+          display: block;
+          width: 22px;
+          height: 20px;
+          position: relative;
+          cursor: pointer;
+          z-index: 101;
+        }
+
+        .burger span {
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background: #fff;
+          transition: 0.3s;
+        }
+
+        .burger span:nth-child(1) { top: 0; }
+        .burger span:nth-child(2) { top: 9px; }
+        .burger span:nth-child(3) { bottom: 0; }
+
+        .burger.active span:nth-child(1) {
+          transform: rotate(45deg);
+          top: 9px;
+        }
+
+        .burger.active span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .burger.active span:nth-child(3) {
+          transform: rotate(-45deg);
+          bottom: 9px;
+        }
+
+        .mobile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
+        .mobile-contacts {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+        }
+
+       
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__top">
+        <div class="container">
+          <div class="header__location">
+            <img src="/assets/img/loc.svg" alt="location" />
+            <span>Самовывоз: г. Москва, ул. Первая 12, пом. 284</span>
+          </div>
+          <div class="header__worktime">
+            <img src="/assets/img/time.png" alt="clock" />
+            <span
+              >ПН-Выходной день | ВС-ЧТ 12:00 – 22:00 | ПТ, СБ 11:00 –
+              22:00</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="header__main">
+        <div class="container header__main-inner">
+          <div class="mobile-header">
+            <div class="header__logo">
+              <img src="/assets/img/logo.png" alt="Логотип" />
+            </div>
+            <div class="mobile-contacts">
+              <div class="header__search">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23.5 23.5L18.2664 18.257M21.1667 11.25C21.1667 13.8801 20.1219 16.4024 18.2622 18.2622C16.4024 20.1219 13.8801 21.1667 11.25 21.1667C8.61998 21.1667 6.09763 20.1219 4.2379 18.2622C2.37816 16.4024 1.33337 13.8801 1.33337 11.25C1.33337 8.61998 2.37816 6.09763 4.2379 4.2379C6.09763 2.37816 8.61998 1.33337 11.25 1.33337C13.8801 1.33337 16.4024 2.37816 18.2622 4.2379C20.1219 6.09763 21.1667 8.61998 21.1667 11.25V11.25Z" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <a href="#" class="header__cart">
+                <span>1</span>
+                <svg
+                  width="21"
+                  height="25"
+                  viewBox="0 0 21 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20.9052 23.7087L19.1755 7.16386C19.1597 6.83898 19.0413 6.58313 18.8201 6.39632C18.599 6.20951 18.3383 6.11611 18.0382 6.11611H14.5551V3.77692C14.5551 2.73729 14.1602 1.84791 13.3704 1.1088C12.5806 0.36968 11.617 0.00012207 10.4797 0.00012207C9.34236 0.00012207 8.37089 0.377802 7.56528 1.13316C6.75967 1.88852 6.35687 2.76978 6.35687 3.77692V6.11611H2.87379C2.57366 6.11611 2.32092 6.20951 2.11557 6.39632C1.91022 6.58313 1.78385 6.83898 1.73646 7.16386L0.00676983 23.7087C-0.00902643 23.8549 0.00282076 24.0052 0.0423114 24.1595C0.0818021 24.3138 0.148936 24.4559 0.243714 24.5859C0.354288 24.6996 0.476709 24.7971 0.610977 24.8783C0.745245 24.9595 0.883462 25.0001 1.02563 25.0001C1.04142 25.0001 1.05327 25.0001 1.06117 25.0001C1.06907 25.0001 1.09671 25.0001 1.1441 25.0001H19.7916C19.9338 25.0001 20.0799 24.9676 20.2299 24.9027C20.38 24.8377 20.5103 24.7402 20.6209 24.6103C20.7473 24.4965 20.842 24.3707 20.9052 24.2326C20.9684 24.0945 21 23.9361 21 23.7574C20.9684 23.7574 20.9447 23.7493 20.9289 23.7331C20.9131 23.7168 20.9052 23.7087 20.9052 23.7087Z"
+                    fill="white"
+                  />
+                </svg>
+              </a>
+              <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+          <nav class="header__nav">
+            <a href="/index.html" class="active">ГЛАВНАЯ</a>
+            <a href="/rolls.html">МЕНЮ</a>
+            <a href="/delivery.html">ДОСТАВКА И ОПЛАТА</a>
+            <a href="/index.html#actions">АКЦИИ</a>
+            <a href="/index.html#reviews">ОТЗЫВЫ</a>
+            <a href="/contacts.html">КОНТАКТЫ</a>
+          </nav>
+          <div class="header__contacts">
+            <span class="header__phone">
+              <img src="/assets/img/Call.svg" alt="phone" />+7 (911) 211-22-14</span>
+            <button class="header__callback">ПЕРЕЗВОНИТЬ</button>
+            <div class="header__search">
+              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.5 23.5L18.2664 18.257M21.1667 11.25C21.1667 13.8801 20.1219 16.4024 18.2622 18.2622C16.4024 20.1219 13.8801 21.1667 11.25 21.1667C8.61998 21.1667 6.09763 20.1219 4.2379 18.2622C2.37816 16.4024 1.33337 13.8801 1.33337 11.25C1.33337 8.61998 2.37816 6.09763 4.2379 4.2379C6.09763 2.37816 8.61998 1.33337 11.25 1.33337C13.8801 1.33337 16.4024 2.37816 18.2622 4.2379C20.1219 6.09763 21.1667 8.61998 21.1667 11.25V11.25Z" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <a href="#" class="header__cart">
+              <span>1</span>
+              <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.9052 23.7087L19.1755 7.16386C19.1597 6.83898 19.0413 6.58313 18.8201 6.39632C18.599 6.20951 18.3383 6.11611 18.0382 6.11611H14.5551V3.77692C14.5551 2.73729 14.1602 1.84791 13.3704 1.1088C12.5806 0.36968 11.617 0.00012207 10.4797 0.00012207C9.34236 0.00012207 8.37089 0.377802 7.56528 1.13316C6.75967 1.88852 6.35687 2.76978 6.35687 3.77692V6.11611H2.87379C2.57366 6.11611 2.32092 6.20951 2.11557 6.39632C1.91022 6.58313 1.78385 6.83898 1.73646 7.16386L0.00676983 23.7087C-0.00902643 23.8549 0.00282076 24.0052 0.0423114 24.1595C0.0818021 24.3138 0.148936 24.4559 0.243714 24.5859C0.354288 24.6996 0.476709 24.7971 0.610977 24.8783C0.745245 24.9595 0.883462 25.0001 1.02563 25.0001C1.04142 25.0001 1.05327 25.0001 1.06117 25.0001C1.06907 25.0001 1.09671 25.0001 1.1441 25.0001H19.7916C19.9338 25.0001 20.0799 24.9676 20.2299 24.9027C20.38 24.8377 20.5103 24.7402 20.6209 24.6103C20.7473 24.4965 20.842 24.3707 20.9052 24.2326C20.9684 24.0945 21 23.9361 21 23.7574C20.9684 23.7574 20.9447 23.7493 20.9289 23.7331C20.9131 23.7168 20.9052 23.7087 20.9052 23.7087ZM12.3042 6.06737H8.70261V3.75256C8.70261 3.34645 8.88427 3.00126 9.24758 2.71698C9.6109 2.43271 10.0374 2.29057 10.5271 2.29057C11.001 2.29057 11.4235 2.43271 11.7947 2.71698C12.1659 3.00126 12.3515 3.34645 12.3515 3.75256V6.06737H12.3042ZM2.3999 22.5878L3.89265 8.35782H6.40425V9.81981C6.40425 10.1447 6.51483 10.4208 6.73598 10.6483C6.95712 10.8757 7.21776 10.9894 7.51789 10.9894C7.83382 10.9894 8.10235 10.8716 8.3235 10.6361C8.54465 10.4005 8.65522 10.1285 8.65522 9.81981V8.35782H12.2568V9.81981C12.2568 10.1447 12.3713 10.4208 12.6003 10.6483C12.8294 10.8757 13.094 10.9894 13.3941 10.9894C13.6942 10.9894 13.9588 10.8716 14.1879 10.6361C14.4169 10.4005 14.5314 10.1285 14.5314 9.81981V8.35782H16.9956L18.4884 22.5878H2.3999Z" fill="white"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="promo">
+      <div class="promo__container container">
+        <div class="promo__left">
+          <div class="promo__content">
+            <h1>
+              <span class="promo__accent">Скидка 10%</span> на все меню<br />до
+              1 ноября
+            </h1>
+            <p>Мы созданы для ценителей высокой кухни</p>
+            <button class="promo__btn">НАШЕ МЕНЮ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="catalog">
+      <div class="container">
+        <h2 class="catalog__title">Каталог</h2>
+        <div class="catalog__grid">
+          <div class="catalog__item">
+            <img src="/assets/img/demo.png" alt="Категория" /><span>Роллы</span>
+          </div>
+          <div class="catalog__item">
+            <img src="/assets/img/demo.png" alt="Категория" /><span>Суши</span>
+          </div>
+          <div class="catalog__item">
+            <img src="/assets/img/demo.png" alt="Категория" /><span
+              >Спайс суши</span
+            >
+          </div>
+          <div class="catalog__item">
+            <img src="/assets/img/demo.png" alt="Категория" /><span>Супы</span>
+          </div>
+          <div class="catalog__item">
+            <img src="/assets/img/demo.png" alt="Категория" /><span
+              >Салаты</span
+            >
+          </div>
+          <div class="catalog__item">
+            <img src="/assets/img/demo.png" alt="Категория" /><span>Фри</span>
+          </div>
+          <div class="catalog__item">
+            <img src="/assets/img/demo.png" alt="Категория" /><span
+              >Холодные закуски</span
+            >
+          </div>
+          <div class="catalog__item">
+            <img src="/assets/img/demo.png" alt="Категория" /><span
+              >Горячие блюда</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="products">
+      <div class="products__tabs">
+        <div class="container products__tabs-inner">
+          <button class="active">Роллы</button>
+          <button>Суши</button>
+          <button>Спайс-суши</button>
+          <button>Супы</button>
+          <button>Салаты</button>
+          <button>Фри</button>
+          <button>Холодные закуски</button>
+          <button>Горячие блюда</button>
+        </div>
+      </div>
+      <div class="container">
+        <div class="products__grid">
+          <a href="/product.html" class="product-card">
+            <img src="/assets/img/demo.png" alt="Товар" />
+            <div class="product-card__info">
+              <div class="product-card__title">
+                Ролл Осака<br /><span>(8 шт, 400 грамм)</span>
+              </div>
+              <div class="product-card__price">
+                <span>300 ₽</span> <s>500 ₽</s>
+                <div class="product-card__count">34 шт.</div>
+              </div>
+              <div class="product-card__footer">
+                <div class="product-card__actions">
+                  <button>-</button>
+                  <span>1</span>
+                  <button>+</button>
+                </div>
+                <button class="product-card__cart">В корзину</button>
+              </div>
+            </div>
+          </a>
+
+          <a href="/product.html" class="product-card">
+            <img src="/assets/img/demo.png" alt="Товар" />
+            <div class="product-card__info">
+              <div class="product-card__title">
+                Ролл Осака<br /><span>(8 шт, 400 грамм)</span>
+              </div>
+              <div class="product-card__price">
+                <span>300 ₽</span> <s>500 ₽</s>
+                <div class="product-card__count">34 шт.</div>
+              </div>
+              <div class="product-card__footer">
+                <div class="product-card__actions">
+                  <button>-</button>
+                  <span>1</span>
+                  <button>+</button>
+                </div>
+                <button class="product-card__cart">В корзину</button>
+              </div>
+            </div>
+          </a>
+
+          <a href="/product.html" class="product-card">
+            <img src="/assets/img/demo.png" alt="Товар" />
+            <div class="product-card__info">
+              <div class="product-card__title">
+                Ролл Осака<br /><span>(8 шт, 400 грамм)</span>
+              </div>
+              <div class="product-card__price">
+                <span>300 ₽</span> <s>500 ₽</s>
+                <div class="product-card__count">34 шт.</div>
+              </div>
+              <div class="product-card__footer">
+                <div class="product-card__actions">
+                  <button>-</button>
+                  <span>1</span>
+                  <button>+</button>
+                </div>
+                <button class="product-card__cart">В корзину</button>
+              </div>
+            </div>
+          </a>
+
+          <a href="/product.html" class="product-card">
+            <img src="/assets/img/demo.png" alt="Товар" />
+            <div class="product-card__info">
+              <div class="product-card__title">
+                Ролл Осака<br /><span>(8 шт, 400 грамм)</span>
+              </div>
+              <div class="product-card__price">
+                <span>300 ₽</span> <s>500 ₽</s>
+                <div class="product-card__count">34 шт.</div>
+              </div>
+              <div class="product-card__footer">
+                <div class="product-card__actions">
+                  <button>-</button>
+                  <span>1</span>
+                  <button>+</button>
+                </div>
+                <button class="product-card__cart">В корзину</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <button class="products__show-more">Показать больше</button>
+      </div>
+    </section>
+    <section class="info-blocks">
+      <div class="container info-blocks__container">
+        <div class="info-block">
+          <img
+            src="/assets/img/icon_1.png"
+            alt="icon_1"
+            class="info-block__icon"
+          />
+          <div class="info-block__title">БЕСПЛАТНАЯ ДОСТАВКА</div>
+          <div class="info-block__desc">
+            Мы используем только самые свежие продукты от проверенных
+            поставщиков, чтобы Вам было вкусно и полезно!
+          </div>
+        </div>
+        <div class="info-block">
+          <img
+            src="/assets/img/icon_2.png"
+            alt="icon_2"
+            class="info-block__icon"
+          />
+          <div class="info-block__title">СВЕЖИЕ ПРОДУКТЫ</div>
+          <div class="info-block__desc">
+            Мы используем только самые свежие продукты от проверенных
+            поставщиков, чтобы Вам было вкусно и полезно!
+          </div>
+        </div>
+        <div class="info-block">
+          <img
+            src="/assets/img/icon_3.png"
+            alt="icon_3"
+            class="info-block__icon"
+          />
+          <div class="info-block__title">ПРОФЕССИОНАЛЬНОЕ КАЧЕСТВО</div>
+          <div class="info-block__desc">
+            Мы используем только самые свежие продукты от проверенных
+            поставщиков, чтобы Вам было вкусно и полезно!
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="pickup-points">
+      <div class="container">
+        <h2 class="pickup-points__title">Пункты самовывоза</h2>
+        <div class="pickup-points__grid">
+          <div class="pickup-point">
+            <img src="/assets/img/loc_1.svg" alt="Местоположение" />
+            <span>427004, г.Москва, Заречная улица 93, помещение 433</span>
+          </div>
+          <div class="pickup-point">
+            <img src="/assets/img/loc_1.svg" alt="Местоположение" />
+            <span>427004, г. Москва, ул. Первая 12, помещение 284</span>
+          </div>
+          <div class="pickup-point">
+            <img src="/assets/img/loc_1.svg" alt="Местоположение" />
+            <span>427004, г. Москва, ул. Первая 12, помещение 284</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="/assets/js/main.js"></script>
+    <!-- Добавляем скрипт Яндекс карт -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_API_ключ&lang=ru_RU" type="text/javascript"></script>
+    
+    <section class="map">
+      <div id="map" style="width: 100%; height: 400px;"></div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="container footer__grid">
+          <div class="footer__logo">
+            <img src="/assets/img/logo.png" alt="Логотип" />
+          </div>
+          <div class="footer__menu">
+            <nav>
+              <a href="/rolls.html#rolls">РОЛЛЫ</a>
+              <a href="/rolls.html#sushi">СУШИ</a>
+              <a href="/rolls.html#spice">СПАЙС СУШИ</a>
+              <a href="/rolls.html#soups">СУПЫ</a>
+              <a href="/rolls.html#salads">САЛАТЫ</a>
+              <a href="/rolls.html#fries">ФРИ</a>
+              <a href="/rolls.html#cold">ХОЛОДНЫЕ ЗАКУСКИ</a>
+              <a href="/rolls.html#hot">ГОРЯЧИЕ БЛЮДА</a>
+            </nav>
+          </div>
+          <div class="footer__info">
+            
+            <div class="footer__contacts">
+              <p><span>ООО «Oшмель»</span>, УНП 213434349</p>
+              <p>зарегистрировано 17.06.2023 г. Московский горисполкомом, регистрационный номер 133324229</p>
+              <p>Регистрация в Торговом реестре 28.05.2024 №1723549</p>
+            </div>
+          </div>
+          <div class="footer__contact">
+            <div class="footer__phone">
+              <img src="/assets/img/icon_footer_1.svg" alt="phone" />
+              <a href="tel:+79112112214">+7 (911) 211-22-14</a>
+            </div>
+            <div class="footer__email">
+              <img src="/assets/img/icon_footer_2.png" alt="email" />
+              <a href="mailto:info@osmel.ru">info@osmel.ru</a>
+            </div>
+            <div class="footer__schedule">
+              <img src="/assets/img/icon_footer_3.png" alt="time" />
+              <div>
+                <p>ПН-Выходной день</p>
+                <p>ВС-ЧТ 12:00 – 22:00</p>
+                <p>ПТ, СБ 11:00 – 22:00</p>
+              </div>
+            </div>
+            <div class="footer__social">
+              <a href="#"><img src="/assets/img/icon_footer_4.png" alt="telegram" /></a>
+              <a href="#"><img src="/assets/img/icon_footer_5.png" alt="whatsapp" /></a>
+              <a href="#"><img src="/assets/img/icon_footer_6.png" alt="vk" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="container">
+          <div class="footer__copyright">
+            <p>© 2025 ООО «Ошмель»</p>
+            <p>Все права защищены!</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      ymaps.ready(function () {
+        var myMap = new ymaps.Map('map', {
+          center: [55.76, 37.64], // Координаты центра карты
+          zoom: 10 // Масштаб
+        });
+
+        // Добавляем метки на карту
+        var placemark1 = new ymaps.Placemark([55.76, 37.64], {
+          balloonContent: '427004, г.Москва, Заречная улица 93, помещение 433'
+        });
+        var placemark2 = new ymaps.Placemark([55.77, 37.65], {
+          balloonContent: '427004, г. Москва, ул. Первая 12, помещение 284'
+        });
+        var placemark3 = new ymaps.Placemark([55.75, 37.63], {
+          balloonContent: '427004, г. Москва, ул. Первая 12, помещение 284'
+        });
+
+        myMap.geoObjects.add(placemark1);
+        myMap.geoObjects.add(placemark2);
+        myMap.geoObjects.add(placemark3);
+      });
+    </script>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="callback-modal">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2>Оставить заявку</h2>
+          <button class="modal__close">×</button>
+        </div>
+        <form class="modal__form">
+          <input type="text" placeholder="ВАШЕ ИМЯ" required>
+          <input type="tel" placeholder="ВАШ ТЕЛЕФОН" required>
+          <input type="email" placeholder="ВАША ПОЧТА" required>
+          <button type="submit" class="modal__submit">ОСТАВИТЬ ЗАЯВКУ</button>
+          <p class="modal__privacy">Нажимая кнопку, я даю свое согласие на обработку моих персональных данных, в соответствии с ФЗ №152</p>
+        </form>
+      </div>
+    </div>
+    <script>
+      // Добавляем скрипт для бургер-меню
+      document.addEventListener('DOMContentLoaded', function() {
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.header__nav');
+        
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('active');
+          nav.classList.toggle('active');
+          document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Закрытие меню при клике на ссылку
+        nav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            burger.classList.remove('active');
+            nav.classList.remove('active');
+            document.body.style.overflow = '';
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
