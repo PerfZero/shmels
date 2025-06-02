@@ -1446,6 +1446,11 @@ width: 50%;
     display: flex;
   }
 
+  .product-detail__grid{
+    display: flex;
+    flex-direction: column;
+  }
+
   .top-contacts__inner{
     flex-direction: column;
     flex-wrap: wrap;

@@ -502,27 +502,6 @@
         </form>
       </div>
     </div>
-    <script>
-      // Добавляем скрипт для бургер-меню
-      document.addEventListener('DOMContentLoaded', function() {
-        const burger = document.querySelector('.burger');
-        const nav = document.querySelector('.header__nav');
-        
-        burger.addEventListener('click', function() {
-          burger.classList.toggle('active');
-          nav.classList.toggle('active');
-          document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
-        });
-
-        // Закрытие меню при клике на ссылку
-        nav.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            burger.classList.remove('active');
-            nav.classList.remove('active');
-            document.body.style.overflow = '';
-          });
-        });
-      });
-    </script>
+   
   </body>
 </html>
