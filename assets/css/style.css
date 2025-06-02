@@ -1437,6 +1437,10 @@ width: 50%;
 }
 
 
+.mobile-header .mobile-contacts{
+  display: none;
+}
+
 
 @media (max-width: 900px) {
   .header__nav {
@@ -1445,6 +1449,11 @@ width: 50%;
   .burger {
     display: flex;
   }
+
+  .mobile-header .mobile-contacts{
+    display: flex;
+  }
+  
 
   .product-detail__grid{
     display: flex;
